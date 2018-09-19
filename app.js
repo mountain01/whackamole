@@ -24,8 +24,8 @@ function updateScore(score) {
 }
 
 function randomizeMole() {
-  mole.x = Math.floor(Math.random() * stage.canvas.width);
-  mole.y = Math.floor(Math.random() * stage.canvas.height);
+  mole.x = Math.floor(Math.random() * (stage.canvas.width-50))+25;
+  mole.y = Math.floor(Math.random() * (stage.canvas.height-50))+25;
 }
 
 function handleTick() {
@@ -85,20 +85,14 @@ function createMole(level) {
       mouthColor = 'black';
       pupilColor = 'green';
       break;
-    case 'medium':
-      headColor = 'green';
-      eyeColor = 'red';
-      noseColor = 'cyan';
-      mouthColor = 'white';
-      pupilColor = 'blue';
-      break;
-    case 'hard':
+      case 'hard':
       headColor = 'black';
       eyeColor = 'yellow';
       noseColor = 'green';
       mouthColor = 'red';
       pupilColor = 'blue';
       break;
+    case 'medium':
     default:
       headColor = 'brown';
       eyeColor = 'white';
