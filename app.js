@@ -7,7 +7,7 @@ function init() {
   stage = new createjs.Stage('game-canvas');
 
   mole = createMole('hard');
-  mole.x = stage.canvas.width / 2;;
+  mole.x = stage.canvas.width / 2;
   mole.y = stage.canvas.height / 2;
   mole.scale = .5;
 
@@ -44,6 +44,11 @@ function handleTick() {
     randomizeMole();
     stage.update();
   }
+}
+
+function setDifficulty(event) {
+  console.log(event);
+  // TODO Matt
 }
 
 function createMole(level) {

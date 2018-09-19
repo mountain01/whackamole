@@ -16,6 +16,13 @@
 <body onload="init()">
   <h1>Whack-a-mole!</h1>
   <h2>Score: <span id="score">0</span></h2>
+  <h3>Difficulty:
+    <select onchange="setDifficulty(event)">
+      <option value="easy">Easy</option>
+      <option selected="selected" value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+  </h3>
   <canvas class="bordered" id="game-canvas" width="500" height="500"></canvas>
   <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
   <script src="app.js"></script>
