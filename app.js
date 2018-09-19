@@ -1,3 +1,4 @@
+const soundID = 'Bop';
 let mole;
 let stage;
 let lastTime = 0;
@@ -13,6 +14,7 @@ function init() {
 
 function bopMole() {
   score++;
+  createjs.Sound.play(soundID);
   updateScore(score);
   randomizeMole();
   lastTime = createjs.Ticker.getTime();
@@ -24,8 +26,8 @@ function updateScore(score) {
 }
 
 function randomizeMole() {
-  mole.x = Math.floor(Math.random() * (stage.canvas.width-50))+25;
-  mole.y = Math.floor(Math.random() * (stage.canvas.height-50))+25;
+  mole.x = Math.floor(Math.random() * (stage.canvas.width - 50)) + 25;
+  mole.y = Math.floor(Math.random() * (stage.canvas.height - 50)) + 25;
 }
 
 function handleTick() {
@@ -67,10 +69,15 @@ function startGame(difficulty) {
 
 function setDifficulty(event) {
   console.log(event);
-  const {target: {value}} = event;
+  const { target: { value } } = event;
   stage.removeChild(mole);
   startGame(value);
 }
+
+function loadSound() {
+  createjs.Sound.registerSound("./bop.mp3", soundID);
+}
+
 
 function createMole(level) {
   const mole = new createjs.Container();
@@ -85,7 +92,7 @@ function createMole(level) {
       mouthColor = 'black';
       pupilColor = 'green';
       break;
-      case 'hard':
+    case 'hard':
       headColor = 'black';
       eyeColor = 'yellow';
       noseColor = 'green';
