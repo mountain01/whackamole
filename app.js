@@ -2,22 +2,13 @@ let mole;
 let stage;
 let lastTime = 0;
 let score = 0;
+let interval = 1000;
 
 function init() {
   stage = new createjs.Stage('game-canvas');
 
-  mole = createMole('hard');
-  mole.x = stage.canvas.width / 2;
-  mole.y = stage.canvas.height / 2;
-  mole.scale = .5;
-
-  mole.addEventListener('click', bopMole);
-
-  stage.addChild(mole);
-
-  stage.update();
-
-  createjs.Ticker.addEventListener("tick", handleTick);
+  // mole = createMole('hard');
+  startGame();
 }
 
 function bopMole() {
@@ -39,16 +30,46 @@ function randomizeMole() {
 
 function handleTick() {
   const time = createjs.Ticker.getTime();
-  if (time - lastTime > 1000) {
+  if (time - lastTime > interval) {
     lastTime = time;
     randomizeMole();
     stage.update();
   }
 }
 
+function startGame(difficulty) {
+  mole = createMole(difficulty);
+  switch (difficulty) {
+    case 'easy':
+      interval = 1500;
+      break;
+    case 'medium':
+      interval = 1000;
+      break;
+    case 'hard':
+      interval = 500;
+      break;
+    default:
+      interval = 1000;
+  }
+  score = 0;
+  updateScore(score);
+  mole.x = stage.canvas.width / 2;
+  mole.y = stage.canvas.height / 2;
+  mole.scale = .5;
+
+  mole.addEventListener('click', bopMole);
+
+  stage.addChild(mole);
+
+  createjs.Ticker.addEventListener("tick", handleTick);
+}
+
 function setDifficulty(event) {
   console.log(event);
-  // TODO Matt
+  const {target: {value}} = event;
+  stage.removeChild(mole);
+  startGame(value);
 }
 
 function createMole(level) {
@@ -57,6 +78,20 @@ function createMole(level) {
   let headColor, eyeColor, noseColor, mouthColor, pupilColor;
 
   switch (level) {
+    case 'easy':
+      headColor = 'yellow';
+      eyeColor = 'blue';
+      noseColor = 'red';
+      mouthColor = 'black';
+      pupilColor = 'green';
+      break;
+    case 'medium':
+      headColor = 'green';
+      eyeColor = 'red';
+      noseColor = 'cyan';
+      mouthColor = 'white';
+      pupilColor = 'blue';
+      break;
     case 'hard':
       headColor = 'black';
       eyeColor = 'yellow';
@@ -109,6 +144,7 @@ function createHead(color) {
   head.graphics.beginFill(color).drawCircle(0, 0, 50);
   return head;
 }
+
 function createEyes(color, pupil) {
   const eyes = new createjs.Container();
   const eye1 = createEye(color, pupil);
