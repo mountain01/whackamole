@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Whack-a-mole</title>
+  <style>
+    .bordered {
+      border: 1px solid black;
+    }
+  </style>
 </head>
+
 <body onload="init()">
-  <canvas id="game-canvas" width="500" height="500"></canvas>
+  <h1>Whack-a-mole!</h1>
+  <h2>Score: <span id="score">0</span></h2>
+  <canvas class="bordered" id="game-canvas" width="500" height="500"></canvas>
   <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
