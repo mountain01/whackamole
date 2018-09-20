@@ -72,7 +72,9 @@ function startGame(difficulty) {
       interval = 1000;
   }
   score = 0;
+  level = 0;
   updateScore(score);
+  updateLevel(level);
   mole.x = stage.canvas.width / 2;
   mole.y = stage.canvas.height / 2;
   mole.scale = .5;
