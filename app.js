@@ -113,7 +113,7 @@ function startGame(difficulty) {
       interval = 1000;
       break;
     case 'hard':
-      interval = 500;
+      interval = 750;
       break;
     default:
       interval = 1000;
