@@ -22,6 +22,17 @@
     .secret-ending {
       display: none;
     }
+
+    button {
+      margin-top: 30px;
+      height: 50px;
+      width: 100px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: orange;
+      color: white;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -32,11 +43,9 @@
   <div class="secret-ending">
     <h1>Congrats on winning the game!</h1>
     <h3>Please enjoy our inspiration for this game</h3>
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/anS4FIA1F3Q" frameborder="0" allow="autoplay; encrypted-media" -->
-      <!-- allowfullscreen></iframe> -->
-      <div id="player"></div>
+    <div id="player"></div>
 
-      <button onclick="resetGame()">Restart</button>
+    <button onclick="resetGame()">Restart</button>
   </div>
   <div class="game-play">
     <h3>Difficulty:
