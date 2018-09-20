@@ -12,6 +12,21 @@ let level = 0
 let interval = 1000;
 let diff = 'medium';
 
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'anS4FIA1F3Q',
+  });
+}
+
 
 function init() {
   stage = new createjs.Stage('game-canvas');
@@ -64,9 +79,11 @@ function showSecret(){
   document.querySelector('.secret-ending').style.display = 'flex';
   document.querySelector('.game-play').style.visibility = 'hidden';
   stage.removeChild(mole);
+  player.playVideo();
 }
 
 function resetGame() {
+  player.stopVideo();
   document.querySelector('.secret-ending').style.display = 'none';
   document.querySelector('.game-play').style.visibility = 'visible';
   startGame(diff);
