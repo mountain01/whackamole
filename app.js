@@ -10,6 +10,7 @@ let lastTime = 0;
 let score = 0;
 let level = 0
 let interval = 1000;
+let diff = 'medium';
 
 
 function init() {
@@ -40,6 +41,35 @@ function updateScore(score) {
 
 function updateLevel(level) {
   document.getElementById('level').innerText = level;
+  switch(diff){
+    case 'hard':
+      if(level == 2) {
+        showSecret();
+      }
+      break;
+    case 'medium':
+      if(level == 4) {
+        showSecret();
+      }
+      break;
+    case 'easy':
+      if(level == 6) {
+        showSecret();
+      }
+      break;
+  }
+}
+
+function showSecret(){
+  document.querySelector('.secret-ending').style.display = 'flex';
+  document.querySelector('.game-play').style.visibility = 'hidden';
+  stage.removeChild(mole);
+}
+
+function resetGame() {
+  document.querySelector('.secret-ending').style.display = 'none';
+  document.querySelector('.game-play').style.visibility = 'visible';
+  startGame(diff);
 }
 
 function randomizeMole() {
@@ -82,7 +112,7 @@ function startGame(difficulty) {
   mole.addEventListener('click', bopMole);
 
   stage.addChild(mole);
-  
+
   stage.update();
 
   createjs.Ticker.addEventListener("tick", handleTick);
@@ -93,6 +123,7 @@ function setDifficulty(event) {
   const { target: { value } } = event;
   stage.removeChild(mole);
   startGame(value);
+  diff = value;
 }
 
 function loadSound() {

@@ -10,20 +10,43 @@
     .bordered {
       border: 1px solid black;
     }
+
+    body,
+    .game-play,
+    .secret-ending {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .secret-ending {
+      display: none;
+    }
   </style>
 </head>
 
 <body onload="loadSound(); init();">
   <h1>Whack-a-mole!</h1>
+  <h4>See if you can score high enough to unlock the secret at the end</h4>
   <h2>Score: <span id="score">0</span> Level: <span id="level">0</span></h2>
-  <h3>Difficulty:
-    <select onchange="setDifficulty(event)">
-      <option value="easy">Easy</option>
-      <option selected="selected" value="medium">Medium</option>
-      <option value="hard">Hard</option>
-    </select>
-  </h3>
-  <canvas class="bordered" id="game-canvas" width="500" height="500"></canvas>
+  <div class="secret-ending">
+    <h1>Congrats on winning the game!</h1>
+    <h3>Please enjoy our inspiration for this game</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/anS4FIA1F3Q" frameborder="0" allow="autoplay; encrypted-media"
+      allowfullscreen></iframe>
+
+      <button onclick="resetGame()">Restart</button>
+  </div>
+  <div class="game-play">
+    <h3>Difficulty:
+      <select onchange="setDifficulty(event)">
+        <option value="easy">Easy</option>
+        <option selected="selected" value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </h3>
+    <canvas class="bordered" id="game-canvas" width="500" height="500"></canvas>
+  </div>
   <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
   <script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
   <script src="app.js"></script>
