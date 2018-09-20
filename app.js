@@ -82,6 +82,8 @@ function startGame(difficulty) {
   mole.addEventListener('click', bopMole);
 
   stage.addChild(mole);
+  
+  stage.update();
 
   createjs.Ticker.addEventListener("tick", handleTick);
 }
