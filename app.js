@@ -1,9 +1,16 @@
-const soundID = 'Bop';
+const LEVEL_INCEMENT = 10;
+const SOUND_IDS = {
+  bop: 'Bop',
+  levelup: 'LevelUp'
+};
+
 let mole;
 let stage;
 let lastTime = 0;
 let score = 0;
+let level = 0
 let interval = 1000;
+
 
 function init() {
   stage = new createjs.Stage('game-canvas');
@@ -14,7 +21,13 @@ function init() {
 
 function bopMole() {
   score++;
-  createjs.Sound.play(soundID);
+  createjs.Sound.play(SOUND_IDS.bop);
+  // If new level
+  if ((score % LEVEL_INCEMENT) === 0) {
+    level++;
+    updateLevel(level);
+    createjs.Sound.play(SOUND_IDS.levelup);
+  }
   updateScore(score);
   randomizeMole();
   lastTime = createjs.Ticker.getTime();
@@ -23,6 +36,10 @@ function bopMole() {
 
 function updateScore(score) {
   document.getElementById('score').innerText = score;
+}
+
+function updateLevel(level) {
+  document.getElementById('level').innerText = level;
 }
 
 function randomizeMole() {
@@ -75,7 +92,8 @@ function setDifficulty(event) {
 }
 
 function loadSound() {
-  createjs.Sound.registerSound("./bop.mp3", soundID);
+  createjs.Sound.registerSound("./bop.mp3", SOUND_IDS.bop);
+  createjs.Sound.registerSound("./levelup.mp3", SOUND_IDS.levelup);
 }
 
 
